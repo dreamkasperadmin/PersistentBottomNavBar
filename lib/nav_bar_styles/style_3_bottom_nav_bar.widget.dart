@@ -85,31 +85,54 @@ class _BottomNavStyle3 extends StatelessWidget {
       padding: navBarEssentials.padding,
       child: Column(
         children: <Widget>[
-          Row(
-            children: <Widget>[
-              AnimatedContainer(
-                duration: navBarEssentials.itemAnimationProperties.duration,
-                curve: navBarEssentials.itemAnimationProperties.curve,
-                color: Colors.transparent,
-                width: navBarEssentials.selectedIndex == 0
-                    ? MediaQuery.of(context).size.width * 0.0
-                    : itemWidth * navBarEssentials.selectedIndex,
-                height: 4,
-              ),
-              Flexible(
-                child: AnimatedContainer(
+          // Row(
+          //   children: <Widget>[
+          //     AnimatedContainer(
+          //       duration: navBarEssentials.itemAnimationProperties.duration,
+          //       curve: navBarEssentials.itemAnimationProperties.curve,
+          //       width: navBarEssentials.selectedIndex == 0
+          //           ? MediaQuery.of(context).size.width * 0.0
+          //           : itemWidth * navBarEssentials.selectedIndex,
+          //       height: 4,
+          //     ),
+          //     Flexible(
+          //       child: AnimatedContainer(
+          //         duration: navBarEssentials.itemAnimationProperties.duration,
+          //         curve: navBarEssentials.itemAnimationProperties.curve,
+          //         width: itemWidth * 0.4,
+          //         height: 4,
+          //         alignment: Alignment.center,
+          //         decoration: BoxDecoration(
+          //           color: selectedItemActiveColor,
+          //           borderRadius: BorderRadius.circular(100),
+          //         ),
+          //       ),
+          //     ),
+          //     const Spacer(),
+          //   ],
+          // ),
+          SizedBox(
+            height: 6,
+            width: MediaQuery.of(context).size.width,
+            child: Stack(
+              children: [
+                AnimatedPositioned(
                   duration: navBarEssentials.itemAnimationProperties.duration,
                   curve: navBarEssentials.itemAnimationProperties.curve,
-                  width: itemWidth,
-                  height: 4,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: selectedItemActiveColor,
-                    borderRadius: BorderRadius.circular(100),
+                  left: itemWidth * navBarEssentials.selectedIndex +
+                      (itemWidth * (1 - 0.4)) / 2, // center the 40% width
+                  top: 0,
+                  child: Container(
+                    width: itemWidth * 0.4, // thinner line (40% of item)
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: selectedItemActiveColor,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
                   ),
                 ),
-              )
-            ],
+              ],
+            ),
           ),
           Expanded(
             child: Padding(
